@@ -87,6 +87,35 @@ namespace ShowroomBooking.Controllers
             fredag.Tider = GetTider();
 
             int dayOfWeek = (int)DateTime.Now.DayOfWeek;
+            if (dayOfWeek == 1)
+            {
+                måndag.Datum = idag.Date;
+                tisdag.Datum = idag.Date.AddDays(1);
+                onsdag.Datum = idag.Date.AddDays(2);
+                torsdag.Datum = idag.Date.AddDays(3);
+                fredag.Datum = idag.Date.AddDays(4);
+
+            }
+            else if (dayOfWeek == 2)
+            {
+                måndag.Datum = idag.Date.AddDays(-1);
+                tisdag.Datum = idag.Date.AddDays(0);
+                onsdag.Datum = idag.Date.AddDays(1);
+                torsdag.Datum = idag.Date.AddDays(2);
+                fredag.Datum = idag.Date.AddDays(3);
+
+            }
+            else if (dayOfWeek == 3)
+            {
+                måndag.Datum = idag.Date.AddDays(-2);
+                tisdag.Datum = idag.Date.AddDays(-1);
+                onsdag.Datum = idag.Date.AddDays(0);
+                torsdag.Datum = idag.Date.AddDays(1);
+                fredag.Datum = idag.Date.AddDays(2);
+
+            }
+
+
             if (dayOfWeek == 4)
             {
                 måndag.Datum = idag.Date.AddDays(-3);
