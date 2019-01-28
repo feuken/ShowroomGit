@@ -1,0 +1,133 @@
+﻿
+@model Vecka
+
+@{
+    ViewData["Title"] = "Booking";
+}
+
+<style>
+    .button.disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+    }
+    div#first {
+        border: 1px solid black;
+    }
+    th {
+        text-align: center;
+        height: 40px;
+    }
+    td {
+        text-align: center;
+        height: 40px;
+    }
+
+    /*
+
+    table {
+        border-collapse: collapse;
+        width: 20%;
+    }
+
+    td {
+        text-align: center;
+        height: 40px;
+    }
+
+    tr {
+        background-color: lightblue;
+        color: black;
+    }
+
+    td:hover {
+        background-color: #267aa6;
+    }*/
+
+   
+</style>
+
+<h2>Booking</h2>
+
+<div id="first"  style="width: 880px;">
+<table cellspacing="20" style="width: 850px; height: 400px;align-content:center;margin-left:10px" >
+
+    @*<tr>
+        <td colspan="5" style="width: 160px;">V.4</td>
+
+    </tr>*@
+    <tr>
+        @for (int i = 0; i < Model.Dagar.Count; i++)
+        {
+            <th >
+                @Model.Dagar[i].Datum.ToShortDateString()
+            </th>
+        }
+    </tr>
+    <tr>
+        @for (int i = 0; i < Model.Dagar.Count; i++)
+        {
+            <th >
+                @Model.Dagar[i].Datum.DayOfWeek
+            </th>
+        }
+    </tr>
+
+    @for (int j = 0; j < Model.Dagar[0].Tider.Count; j++)
+    {
+        <tr>
+            @for (int i = 0; i < Model.Dagar.Count; i++)
+            {
+                string str = j.ToString();
+            <td>
+
+                @if (Model.Dagar[i].Datum.Date >= DateTime.Now.Date)
+                {
+                    if (Model.Dagar[i].Tider[j].Booked == false)
+                    {
+                        if (Model.Dagar[i].Tider[j].StartTime.Hour > DateTime.Now.Hour)
+                        {
+                            <a href="Appointment?i=@i&j=@j ">
+
+
+                                <input type="button" style="background-color : lightgreen;" value=@(Model.Dagar[i].Tider[j].StartTime.ToShortTimeString() + "-" + Model.Dagar[i].Tider[j].EndTime.ToShortTimeString()) />
+
+
+                            </a>
+                        }
+
+                        else
+                        {
+                            <a>
+                                <input type="button" style="background-color : lightpink;" disabled="disabled" value=@(Model.Dagar[i].Tider[j].StartTime.ToShortTimeString() + "-" + Model.Dagar[i].Tider[j].EndTime.ToShortTimeString()) />
+                            </a>
+
+                        }
+                    }
+
+                    else
+                        {
+                            <a>
+                                <input type="button" style="background-color : lightpink;" disabled="disabled" value=@(Model.Dagar[i].Tider[j].StartTime.ToShortTimeString() + "-" + Model.Dagar[i].Tider[j].EndTime.ToShortTimeString()) />
+                            </a>
+
+                        }
+
+
+
+                }
+                else
+                {
+                    <a>
+                        <input type="button" style="background-color : lightpink;" disabled="disabled" value=@(Model.Dagar[i].Tider[j].StartTime.ToShortTimeString() + "-" + Model.Dagar[i].Tider[j].EndTime.ToShortTimeString()) />
+                    </a>
+
+                }
+            </td>
+            }
+        </tr>
+    }
+
+
+
+</table>
+</div>

@@ -1,0 +1,28 @@
+﻿@model List<Events>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Bookings</h2>
+<div>
+   
+    @if (TempData["custdetails"] != null)
+        {
+            <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["custdetails"]");
+            };
+            </script>
+        }
+
+    </div>
+
+<ul>
+    @foreach (var item in Model)
+    {
+        <li><h5>@item.EventStart - @item.EventEnd</h5></li>
+    }
+</ul>
+
+<a asp-controller="Booking" asp-action="Booking" class="btn btn-primary">Book</a>
+
